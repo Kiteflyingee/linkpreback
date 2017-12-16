@@ -2,7 +2,7 @@
 
  %---读取文件并把数据转换成邻接矩阵
 %  fileName = 'data/USAir.txt';
- fileName = 'data/email.txt';
+ fileName = 'data/PB.txt';
 
  textFile = ReadFile(fileName);
  data = FormNet(textFile);
@@ -157,6 +157,6 @@
  %---写入xls
  for i = 1:32
 %     outfile = strcat('out/FigA_',int2str(i),'.xlsx');
-    outfile = strcat('out/email/FigA_',int2str(i),'.xlsx');
+    outfile = strcat('out/PB/FigA_',int2str(i),'.xlsx');
     xlswrite(outfile,results(:,:,i));
  end 
