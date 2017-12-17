@@ -13,7 +13,7 @@
  spammerNum = round(nodeNum*0.1);
  
  %---用来存储数据(32个2维矩阵)
- results = zeros(10,20,32);
+ results = zeros(11,20,32);
  for i=1:20 %实验20次
      j=1;
      tic;

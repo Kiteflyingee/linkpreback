@@ -208,12 +208,6 @@ PredictorsName = [];
         tempauc = TSCN(train, test, 0.01);          
         % Transfer similarity - Common Neighbor
         Predictors = [Predictors 'TSCN	']; ithAUCvector = [ithAUCvector tempauc];      
-       tempauc = TSAA(train, test, 0.01);      
-        % Transfer similarity - Common Neighbor
-        Predictors = [Predictors 'TSAA	']; ithAUCvector = [ithAUCvector tempauc];
-       tempauc = TSRWR(train, test, 0.01);  
-        % Transfer similarity - Random walk with restart
-        Predictors = [Predictors 'TSRWR	']; ithAUCvector = [ithAUCvector tempauc];     
 
        %-----将此次得到的精度存到矩阵aucOfallPredictor，用于最后计算平均值和方差
         aucOfallPredictor = [aucOfallPredictor; ithAUCvector]; 
