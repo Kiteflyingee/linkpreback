@@ -159,7 +159,7 @@
      end
       %---把原始实验数据也写入xls
      for i = 1:32
-        outfile = strcat('out/PB/FigCk_',int2str(k),'algorithm_',int2str(i),'.xlsx');
+        outfile = strcat('out/USAir/FigCk_',int2str(k),'algorithm_',int2str(i),'.xlsx');
         xlswrite(outfile,results(:,:,i));
      end 
      %--求出平均数和方差，把平均数存放到一个32*11的矩阵里面(每行代表每个算法的所有平均数据)
