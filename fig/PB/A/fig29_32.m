@@ -1,83 +1,84 @@
 subplot(2,2,1);
 x=0:0.1:1;
-y=[0.8943436
-0.8936712
-0.8988772
-0.89767
-0.89776
-0.902666
-0.901224
-0.9036252
-0.9032224
-0.906652
-0.905189
+y=[0.93076
+0.931773
+0.932615
+0.934132
+0.935962
+0.935287
+0.935744
+0.936373
+0.938144
+0.937473
+0.940473
 
 ];
 plot(x,y,'-bs','LineWidth',2,'MarkerSize',10);
 set(gca,'FontSize',20);
 xlabel('Proportion of hot node','fontsize',20);
 ylabel('AUC','fontsize',20);
-title('(a) CE SRW 4','fontsize',20);
+title('(a) PB SRW 4','fontsize',20);
 
 subplot(2,2,2);
 x=0:0.1:1;
-y=[0.8991768
-0.8978392
-0.9022756
-0.901442
-0.9014888
-0.9057636
-0.9046642
-0.9071894
-0.9064704
-0.910034
-0.9087468
+y=[0.934271
+0.934716
+0.935637
+0.936835
+0.938068
+0.937529
+0.937478
+0.938237
+0.940595
+0.939291
+0.942039
 
 ];
 plot(x,y,'-bs','LineWidth',2,'MarkerSize',10);
 set(gca,'FontSize',20);
 xlabel('Proportion of hot node','fontsize',20);
 ylabel('AUC','fontsize',20);
-title('(b) CE SRW 5','fontsize',20);
+title('(b) PB SRW 5','fontsize',20);
 
 subplot(2,2,3);
 x=0:0.1:1;
-y=[0.866746
-0.866
-0.86822
-0.864316
-0.8664868
-0.8683922
-0.864404
-0.8658556
-0.8642474
-0.8627304
-0.860972
+y=[0.9008
+0.9008
+0.902378
+0.902834
+0.904715
+0.903911
+0.902514
+0.902425
+0.902636
+0.900726
+0.899495
 
 ];
 plot(x,y,'-bs','LineWidth',2,'MarkerSize',10);
 set(gca,'FontSize',20);
 xlabel('Proportion of hot node','fontsize',20);
 ylabel('AUC','fontsize',20);
-title('(c) CE MFI','fontsize',20);
+title('(c) PB MFI','fontsize',20);
 
 
 subplot(2,2,4);
 x=0:0.1:1;
-y=[0.4700784
-0.48199
-0.494152
-0.4986156
-0.503674
-0.4975688
-0.5036084
-0.5196248
-0.5215762
-0.509888
-0.5347228
+y=[0.496871
+0.494274
+0.487304
+0.4977
+0.487627
+0.487682
+0.48183
+0.487998
+0.484394
+0.495757
+0.496222
+
 ];
 plot(x,y,'-bs','LineWidth',2,'MarkerSize',10);
 set(gca,'FontSize',20);
 xlabel('Proportion of hot node','fontsize',20);
 ylabel('AUC','fontsize',20);
-title('(d) USAir TS','fontsize',20);
+title('(d) PB TS','fontsize',20);

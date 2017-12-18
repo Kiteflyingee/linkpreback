@@ -1,8 +1,9 @@
 %% 这个文件是图C通用脚本 
 
  %---读取文件并把数据转换成邻接矩阵
-fileName = 'data/USAir.txt';
+% fileName = 'data/USAir.txt';
 % fileName = 'data/email.txt';
+fileName = 'data/CE.txt';
  textFile = ReadFile(fileName);
  data = FormNet(textFile);
  %节点的数量
@@ -11,15 +12,17 @@ fileName = 'data/USAir.txt';
  % 节点的度从10-50,步长为10
  for k=10:10:50
      % 用来存储每个K的所有结果用来计算平均数和方差
-     results = zeros(11,100,32);
+     results = zeros(10,100,32);
      for i=1:100 %实验100次
          %---每次实验输出提示信息
          str = strcat('k=',int2str(k),'time=',int2str(i));
          disp(str);
          j=1;
          tic;
-         for spammerpercent=0.0:0.1:1.0
-             spammerNum=nodeLength*spammerpercent;
+         %---暂时先不计算spammer为0，最后计算
+         for spammerpercent=0.1:0.1:1.0
+             spammerNum=ceil(nodeLength*spammerpercent);
+             
              net=ChangeDataset( spammerNum, k,data,0.5);
              
              %---划分训练集和测试集
@@ -159,17 +162,17 @@ fileName = 'data/USAir.txt';
      end
       %---把原始实验数据也写入xls
      for i = 1:32
-        outfile = strcat('out/USAir/C/FigCk_',int2str(k),'algorithm_',int2str(i),'.xlsx');
+        outfile = strcat('out/CE/C/FigCk_',int2str(k),'algorithm_',int2str(i),'.xlsx');
         xlswrite(outfile,results(:,:,i));
      end 
      %--求出平均数和方差，把平均数存放到一个32*11的矩阵里面(每行代表每个算法的所有平均数据)
-     avgMatrix=zeros(32,11);
+     avgMatrix=zeros(32,10);
      for i=1:32
-         for j=1:11
+         for j=1:10
             avgMatrix(i,j) = mean(results(j,:,i));
          end
      end
 %      把结果输出到文件中去
-    outfile = strcat('out/USAir/C/FigC_k',int2str(k),'.xlsx');
+    outfile = strcat('out/CE/C/FigC_k',int2str(k),'.xlsx');
     xlswrite(outfile,avgMatrix(:,:));
  end
