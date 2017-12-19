@@ -22,7 +22,7 @@ plot(x,y,'-k^','LineWidth',1,'MarkerSize',10);
 
 set(gca,'FontSize',20);
 xlabel('Spammer','fontsize',20);
-ylabel('Precision','fontsize',20);
+ylabel('AUC','fontsize',20);
 title('(c) USAir CN','fontsize',20);
 
 legend('k=10','k=20','k=30','k=40','k=50');
@@ -55,7 +55,7 @@ plot(x,y,'-k^','LineWidth',1,'MarkerSize',10);
 
 set(gca,'FontSize',20);
 xlabel('Spammer','fontsize',20);
-ylabel('Precision','fontsize',20);
+ylabel('AUC','fontsize',20);
 title('(c) USAir Salton','fontsize',20);
 
 legend('k=10','k=20','k=30','k=40','k=50');
@@ -87,7 +87,7 @@ plot(x,y,'-k^','LineWidth',1,'MarkerSize',10);
 
 set(gca,'FontSize',20);
 xlabel('Spammer','fontsize',20);
-ylabel('Precision','fontsize',20);
+ylabel('AUC','fontsize',20);
 title('(c) USAir Jaccard','fontsize',20);
 
 legend('k=10','k=20','k=30','k=40','k=50');
@@ -124,7 +124,7 @@ plot(x,y,'-k^','LineWidth',1,'MarkerSize',10);
 
 set(gca,'FontSize',20);
 xlabel('Spammer','fontsize',20);
-ylabel('Precision','fontsize',20);
+ylabel('AUC','fontsize',20);
 title('(c) USAir Sorenson','fontsize',20);
 
 legend('k=10','k=20','k=30','k=40','k=50');

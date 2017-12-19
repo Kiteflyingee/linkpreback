@@ -3,7 +3,8 @@
  %---读取文件并把数据转换成邻接矩阵
 % fileName = 'data/USAir.txt';
 % fileName = 'data/email.txt';
-fileName = 'data/CE.txt';
+% fileName = 'data/CE.txt';
+fileName = 'data/PB.txt';
  textFile = ReadFile(fileName);
  data = FormNet(textFile);
  %节点的数量
@@ -12,8 +13,8 @@ fileName = 'data/CE.txt';
  % 节点的度从10-50,步长为10
  for k=10:10:50
      % 用来存储每个K的所有结果用来计算平均数和方差
-     results = zeros(10,100,32);
-     for i=1:100 %实验100次
+     results = zeros(10,50,32);
+     for i=1:50 %实验100次
          %---每次实验输出提示信息
          str = strcat('k=',int2str(k),'time=',int2str(i));
          disp(str);
@@ -162,10 +163,10 @@ fileName = 'data/CE.txt';
      end
       %---把原始实验数据也写入xls
      for i = 1:32
-        outfile = strcat('out/CE/C/FigCk_',int2str(k),'algorithm_',int2str(i),'.xlsx');
+        outfile = strcat('out/PB/C/FigCk_',int2str(k),'algorithm_',int2str(i),'.xlsx');
         xlswrite(outfile,results(:,:,i));
      end 
-     %--求出平均数和方差，把平均数存放到一个32*11的矩阵里面(每行代表每个算法的所有平均数据)
+     %--求出平均数和方差，把平均数存放到一个32*10的矩阵里面(每行代表每个算法的所有平均数据) 0.0的数据不存储
      avgMatrix=zeros(32,10);
      for i=1:32
          for j=1:10
@@ -173,6 +174,6 @@ fileName = 'data/CE.txt';
          end
      end
 %      把结果输出到文件中去
-    outfile = strcat('out/CE/C/FigC_k',int2str(k),'.xlsx');
+    outfile = strcat('out/PB/C/FigC_k',int2str(k),'.xlsx');
     xlswrite(outfile,avgMatrix(:,:));
  end
