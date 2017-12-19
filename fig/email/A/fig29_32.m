@@ -81,4 +81,4 @@ plot(x,y,'-bs','LineWidth',2,'MarkerSize',10);
 set(gca,'FontSize',20);
 xlabel('Proportion of hot node','fontsize',20);
 ylabel('AUC','fontsize',20);
-title('(d) CE TS','fontsize',20);
+title('(d) email TS','fontsize',20);
