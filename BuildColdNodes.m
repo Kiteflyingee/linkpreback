@@ -1,13 +1,13 @@
-function[hotNodes] = BuildColdNodes(data,k,hotPercent)
-%% 产生冷门商品池(数据集，热门商品的比例)
+function[coldNodes] = BuildColdNodes(data,k,coldPercent)
+%% 产生冷门商品池(数据集，冷门商品的比例)
 % 参数：原始数据集，degree,冷门商品的比例
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%代码待修改%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % 返回热门Node池二维矩阵（第一行为Node序号，第二行为Node的度）形式
     %---如果热门比例为0，则不产生hot nodes
-    if hotPercent<0.01
-        hotNodes=[];
+    if coldPercent<0.01
+        coldNodes=[];
         return ;
     end
     nodeNum = length(data);
@@ -23,11 +23,11 @@ function[hotNodes] = BuildColdNodes(data,k,hotPercent)
         nodeDegrees(2,Node)=degree;
     end
     %--矩阵按第二行进行排序,hot池的大小为要选取的hot的num*2+5
-    hotNodesLength = round(k * hotPercent)*2+5;
+    coldNodesLength = round(k * coldPercent)*2+5;
     a=nodeDegrees(2,:);
-    [b,pos]=sort(a,'descend');%pos为排序后的下标,b为第2行的排序结果;  
+    [b,pos]=sort(a);%pos为排序后的下标,b为第2行的排序结果;  
     nodeDegrees(1,:)=nodeDegrees(1,pos);%第1行按照第2行排序的下标对应    
     nodeDegrees(2,:)=b;
     %--只取前num*2+5个放入池子中
-    hotNodes = nodeDegrees(1,1:hotNodesLength);
+    coldNodes = nodeDegrees(1,1:coldNodesLength);
 end
