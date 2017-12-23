@@ -13,8 +13,8 @@ fileName = 'data/CE.txt';
  spammerNum = round(nodeNum*0.1);
  
  %---用来存储数据(32个2维矩阵)
- results = zeros(11,100,32);
- for i=1:100 %实验50次
+ results = zeros(11,20,32);
+ for i=1:20 %实验20次
      j=1;
      tic;
      for coldpercent=0.0:0.1:1.0
@@ -154,20 +154,14 @@ fileName = 'data/CE.txt';
      toc;
      disp(i);
  end
-
- 
- %--用来存储每个算法的平均结果
- AvgResult=zeros(32,11);
- for i=1:32
-     for j=1:11
-        AvgResult(i,j)=mean(results(j,:,i));
-     end
- end
-  %---写入xls
+ %---写入xls
  for i = 1:32
 %     outfile = strcat('out/FigA_',int2str(i),'.xlsx');
     outfile = strcat('out/CE/Cold/A/FigA_Cold_',int2str(i),'.xlsx');
     xlswrite(outfile,results(:,:,i));
  end 
- avgoutfile = strcat('out/CE/Cold/A/FigA_Cold_avg_',int2str(i),'.xlsx');
- xlswrite(avgoutfile,AvgResult(:,:));
+ 
+ %--用来存储每个算法的平均结果
+ AvgResult=zeros(32,11);
+ for i=1:32
+     
