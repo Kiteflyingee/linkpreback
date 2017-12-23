@@ -24,7 +24,7 @@ fileName = 'data/CE.txt';
          for spammerpercent=0.1:0.1:1.0
              spammerNum=ceil(nodeLength*spammerpercent);
              
-             net=ChangeDataset( spammerNum, k,data,0.5);
+             net=RebaseDataset( spammerNum, k,data,0.0,0.5);
              
              %---划分训练集和测试集
              [train,test]=DivideNet(net,data,0.9);
