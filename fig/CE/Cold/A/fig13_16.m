@@ -4,7 +4,7 @@ y=[0.8553553	0.8594031	0.8632853	0.864836	0.8676281	0.8700595	0.8711927	0.871457
 ];
 plot(x,y,'-bs','LineWidth',2,'MarkerSize',10);
 set(gca,'FontSize',20);
-xlabel('Proportion of hot node','fontsize',20);
+xlabel('Proportion of cold node','fontsize',20);
 ylabel('AUC','fontsize',20);
 title('(a) CE LNBRA','fontsize',20);
 
@@ -14,7 +14,7 @@ y=[0.8658231	0.8687552	0.8687471	0.8686524	0.8685498	0.8694823	0.8708182	0.87011
 ];
 plot(x,y,'-bs','LineWidth',2,'MarkerSize',10);
 set(gca,'FontSize',20);
-xlabel('Proportion of hot node','fontsize',20);
+xlabel('Proportion of cold node','fontsize',20);
 ylabel('AUC','fontsize',20);
 title('(b) CE LocalPath','fontsize',20);
 
@@ -24,7 +24,7 @@ y=[0.8634166	0.8667398	0.866807	0.8669794	0.8663742	0.8676868	0.8684654	0.868650
 ];
 plot(x,y,'-bs','LineWidth',2,'MarkerSize',10);
 set(gca,'FontSize',20);
-xlabel('Proportion of hot node','fontsize',20);
+xlabel('Proportion of cold node','fontsize',20);
 ylabel('AUC','fontsize',20);
 title('(c) CE Katz0.01','fontsize',20);
 
@@ -35,6 +35,6 @@ y=[0.8649484	0.8681578	0.8679818	0.8681462	0.8676738	0.8687172	0.8696972	0.86962
 ];
 plot(x,y,'-bs','LineWidth',2,'MarkerSize',10);
 set(gca,'FontSize',20);
-xlabel('Proportion of hot node','fontsize',20);
+xlabel('Proportion of cold node','fontsize',20);
 ylabel('AUC','fontsize',20);
 title('(d) CE Katz0.001','fontsize',20);
