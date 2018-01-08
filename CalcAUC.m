@@ -1,6 +1,6 @@
 function [ auc ] = CalcAUC( train, test, sim )
 %% 计算AUC，输入计算的相似度矩阵
-sim = triu(sim - sim.*train);
+sim = triu(sim - sim.*train) - diag(diag(sim));
 % 只保留测试集和不存在边集合中的边的相似度（自环除外）
 non = 1 - train - test - eye(max(size(train,1),size(train,2)));
 test = triu(test);

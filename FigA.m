@@ -2,7 +2,7 @@
 
  %---读取文件并把数据转换成邻接矩阵
 %  fileName = 'data/USAir.txt';
- fileName = 'data/PB.txt';
+ fileName = 'data/CE.txt';
 
  textFile = ReadFile(fileName);
  data = FormNet(textFile);
@@ -13,8 +13,8 @@
  spammerNum = round(nodeNum*0.1);
  
  %---用来存储数据(32个2维矩阵)
- results = zeros(11,20,32);
- for i=1:20 %实验20次
+ results = zeros(11,100,32);
+ for i=1:100 %实验100次
      j=1;
      tic;
      for hotpercent=0.0:0.1:1.0
@@ -157,6 +157,6 @@
  %---写入xls
  for i = 1:32
 %     outfile = strcat('out/FigA_',int2str(i),'.xlsx');
-    outfile = strcat('out/PB/FigA_',int2str(i),'.xlsx');
+    outfile = strcat('out/CE/FigA_',int2str(i),'.xlsx');
     xlswrite(outfile,results(:,:,i));
  end 
