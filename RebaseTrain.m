@@ -22,13 +22,13 @@ function [ train ] = RebaseTrain(train,k,hotPercent,coldPercent ,net,nonlinkperc
         srcNodes(i,1) = nodeIdx;
         %用来存储已经挑选好的节点的数组,挑选节点的时候 还需要注意原来的两个节点之间是否有连接
         selectedNodes = zeros(k,1);
+        count = 0 ; %已经挑选的连边数量
 
         %--挑选热门节点
         if hotNodeNum > 0
             hotNodes = BuildHotNodes(net,k,hotPercent);
             hotNodesLength = length(hotNodes);
-            count = 0;
-            while count < hotNodeNum
+            for j =1: hotNodeNum
                 selectIdx = ceil(rand(1)*hotNodesLength);
                 selectNode = hotNodes(1,selectIdx);
                 
@@ -40,22 +40,64 @@ function [ train ] = RebaseTrain(train,k,hotPercent,coldPercent ,net,nonlinkperc
                 if checkEdeg(copyNet,nodeIdx,selectNode)
                     continue;
                 end
-                
+                count = count +1;
+                %该源节点总挑选连边数量加1
+                %--更新到训练集中，并更新到复制的网络邻接矩阵
                 selectedNodes(count,1) = selectNode;
                 copyNet(nodeIdx,selectNode)=1;
                 copyNet(selectNode,nodeIdx)=1;
                 train(nodeIdx,selectNode)=1;
                 train(selectNode,nodeIdx)=1;
-                count=count+1;
             end
-            clear count;
         end
-        %——挑选冷们节点
+        %——挑选冷门节点
         if coldNodeNum>0
+            coldNodes = BuildColdNodes(net,k,hotPercent);
+            coldNodesLength = length(coldNodes);
+            for j = 1:coldNodeNum
+                selectIdx = ceil(rand(1)*coldNodesLength);
+                selectNode = coldNodes(1,selectIdx);
+                
+                %--如果是已经选择的节点则重新选取
+                if ismember(selectNode,selectedNodes)
+                    continue;
+                end
+                %——判断挑选的节点是不是源节点，再判断是否在新网络中有链接
+                if checkEdeg(copyNet,nodeIdx,selectNode)
+                    continue;
+                end
+                count = count + 1;
+                %该源节点总挑选连边数量加1
+                selectedNodes(count,1) = selectNode;
+                %--更新到训练集中，并更新到复制的网络邻接矩阵
+                copyNet(nodeIdx,selectNode)=1;
+                copyNet(selectNode,nodeIdx)=1;
+                train(nodeIdx,selectNode)=1;
+                train(selectNode,nodeIdx)=1;
+            end
         end
         %——挑选随机节点
         randomNodeNum = k-hotNodeNum-coldNodeNum;
         if randomNodeNum>0
+            for j=1:randomNodeNum
+                selectNode = ceil(rand(1)*nodeNum);
+                 %--如果是已经选择过的节点则重新选取（和下面好像有重复）
+                if ismember(selectNode,selectedNodes)
+                    continue;
+                end
+                %——判断挑选的节点是不是源节点，再判断是否在新网络中有链接
+                if checkEdeg(copyNet,nodeIdx,selectNode)
+                    continue;
+                end
+                count = count + 1;
+                %该源节点总挑选连边数量加1
+                selectedNodes(count,1) = selectNode;
+                %--更新到训练集中，并更新到复制的网络邻接矩阵
+                copyNet(nodeIdx,selectNode)=1;
+                copyNet(selectNode,nodeIdx)=1;
+                train(nodeIdx,selectNode)=1;
+                train(selectNode,nodeIdx)=1;
+            end
         end
     end
 end
