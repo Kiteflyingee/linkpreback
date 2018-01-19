@@ -1,24 +1,27 @@
-%% 这个文件是图C通用脚本 
+%% 全部随机链接
 
  %---读取文件并把数据转换成邻接矩阵
- fileName = 'data/CE.txt';
+ fileName = 'data/test.txt';
  textFile = ReadFile(fileName);
  net = FormNet(textFile);
  %---节点的数量
  nodeLength = length(net);
- k = round(length(textFile)/nodeNum);
-
+ k = round(length(textFile)/nodeLength);
+% 求出节点的平均度
  
- results = zeros(10,50,32);
+ results = zeros(11,50,32);
  for i=1:50 %实验50次
      j=1;
      tic;
      %---暂时先不计算spammer为0，最后计算
-     for falselinkpercent=0.1:0.1:1.0
+     for falselinkpercent=0.0:0.1:1.0
          
          %---划分训练集和测试集
          [train,test]=DivideDataset(net,0.9);
-
+         train1 = full(train);
+         %--全部随机链接
+         train=RebaseTrain(train,k,0, 0 ,net,falselinkpercent);
+         train2 = full(train);
 %          disp('CN...1');
          cnauc=CN(train,test);
          results(j,i,1)=cnauc;
@@ -164,6 +167,6 @@
          end
      end
     %      把结果输出到文件中去
-    outfile = strcat('out/CE/falselink/Fig_avg','.xlsx');
+    outfile = strcat('out/CE/falselink/allrandom_Fig_avg','.xlsx');
     xlswrite(outfile,avgMatrix(:,:));
  

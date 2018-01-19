@@ -11,7 +11,10 @@ function [ train,test ] = DivideDataset( net, ratioTrain )
     while (nnz(test) < num_testlinks)
         
         %---- 随机选择一条边
-        index_link = ceil(rand(1) * length(linklist));        
+        index_link = ceil(rand(1) * length(linklist)); 
+        if index_link<1
+            index_link=1;
+        end
         uid1 = linklist(index_link,1); 
         uid2 = linklist(index_link,2);    
         

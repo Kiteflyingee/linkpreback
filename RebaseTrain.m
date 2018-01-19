@@ -13,6 +13,9 @@ function [ train ] = RebaseTrain(train,k,hotPercent,coldPercent ,net,nonlinkperc
     %——为srcNodeNum个节点添加虚假连边
     srcNodes = zeros(srcNodeNum,1);
     %用来存储已经选取的源节点，以防重复选取
+    if srcNodeNum<1
+        return ;
+    end
     for i = 1:srcNodeNum
         nodeIdx = ceil(rand(1)*nodeNum);
         %——如果该节点已经被选取为源节点，则重新选择
@@ -102,7 +105,7 @@ function [ train ] = RebaseTrain(train,k,hotPercent,coldPercent ,net,nonlinkperc
     end
 end
 
-%%检查连边是不是在原来数据集存在
+%%检查连边是不是在新数据集存在
 function [isEdge]=checkEdeg(copyNet,nid1,nid2)
     isEdge=0;
     if nid1==nid2
