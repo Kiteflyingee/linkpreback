@@ -13,15 +13,16 @@
  for i=1:50 %实验50次
      j=1;
      tic;
+     %---划分训练集和测试集
+     [train,test]=DivideDataset(net,0.9);
+     train1 = full(train);
+     test1 = full(test);
      %---暂时先不计算spammer为0，最后计算
      for falselinkpercent=0.0:0.1:1.0
-         
-         %---划分训练集和测试集
-         [train,test]=DivideDataset(net,0.9);
-         train1 = full(train);
          %--全部随机链接
          train=RebaseTrain(train,k,0, 0 ,net,falselinkpercent);
          train2 = full(train);
+         test2 = full(test);
 %          disp('CN...1');
          cnauc=CN(train,test);
          results(j,i,1)=cnauc;

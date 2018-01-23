@@ -8,9 +8,9 @@ non = triu(non);
 % 分别取测试集和不存在边集合的上三角矩阵，用以取出他们对应的相似度分值
 test_num = nnz(test);
 non_num = nnz(non);
-test_rd = ceil( test_num * rand( 1, 50000));  
+test_rd = ceil( test_num * rand( 1, 10000));  
 % ceil是取大于等于的最小整数，50000为抽样比较的次数，相当于公式（34）中的n值
-non_rd = ceil( non_num * rand( 1, 50000));
+non_rd = ceil( non_num * rand( 1, 10000));
 test_pre = sim .* test;
 non_pre = sim .* non;
 test_data =  test_pre( test == 1 )';  
@@ -22,5 +22,5 @@ non_rd = non_data( non_rd );
 clear test_data non_data;
 n1 = length( find(test_rd > non_rd) );  
 n2 = length( find(test_rd == non_rd));
-auc = ( n1 + 0.5*n2 ) / 50000;
+auc = ( n1 + 0.5*n2 ) / 10000;
 end

@@ -13,6 +13,7 @@ function [ train ] = RebaseTrain(train,k,hotPercent,coldPercent ,net,nonlinkperc
     %——为srcNodeNum个节点添加虚假连边
     srcNodes = zeros(srcNodeNum,1);
     %用来存储已经选取的源节点，以防重复选取
+    train3 = full(train);
     if srcNodeNum<1
         return ;
     end
@@ -35,10 +36,7 @@ function [ train ] = RebaseTrain(train,k,hotPercent,coldPercent ,net,nonlinkperc
                 selectIdx = ceil(rand(1)*hotNodesLength);
                 selectNode = hotNodes(1,selectIdx);
                 
-                %--如果是已经选择的节点则重新选取
-                if ismember(selectNode,selectedNodes)
-                    continue;
-                end
+              
                 %——判断挑选的节点是不是源节点，再判断是否在新网络中有链接
                 if checkEdeg(copyNet,nodeIdx,selectNode)
                     continue;
@@ -61,10 +59,7 @@ function [ train ] = RebaseTrain(train,k,hotPercent,coldPercent ,net,nonlinkperc
                 selectIdx = ceil(rand(1)*coldNodesLength);
                 selectNode = coldNodes(1,selectIdx);
                 
-                %--如果是已经选择的节点则重新选取
-                if ismember(selectNode,selectedNodes)
-                    continue;
-                end
+                
                 %——判断挑选的节点是不是源节点，再判断是否在新网络中有链接
                 if checkEdeg(copyNet,nodeIdx,selectNode)
                     continue;
@@ -84,10 +79,7 @@ function [ train ] = RebaseTrain(train,k,hotPercent,coldPercent ,net,nonlinkperc
         if randomNodeNum>0
             for j=1:randomNodeNum
                 selectNode = ceil(rand(1)*nodeNum);
-                 %--如果是已经选择过的节点则重新选取（和下面好像有重复）
-                if ismember(selectNode,selectedNodes)
-                    continue;
-                end
+                
                 %——判断挑选的节点是不是源节点，再判断是否在新网络中有链接
                 if checkEdeg(copyNet,nodeIdx,selectNode)
                     continue;

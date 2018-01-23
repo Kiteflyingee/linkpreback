@@ -1,6 +1,5 @@
-function [ train,test ] = DivideDataset( net, ratioTrain )
-%% 将原始的邻接矩阵切分为训练集和测试集
-%---划分训练集和测试集，保证训练集连通
+function [ train ,test ] = DivideDataset( net, ratioTrain)
+%% 划分训练集和测试集，保证训练集连通
     num_testlinks = ceil((1-ratioTrain) * nnz(net)/2);      
     % 确定测试集的边数目
     [xindex, yindex] = find(tril(net));  linklist = [xindex yindex];    
@@ -11,10 +10,7 @@ function [ train,test ] = DivideDataset( net, ratioTrain )
     while (nnz(test) < num_testlinks)
         
         %---- 随机选择一条边
-        index_link = ceil(rand(1) * length(linklist)); 
-        if index_link<1
-            index_link=1;
-        end
+        index_link = ceil(rand(1) * length(linklist));        
         uid1 = linklist(index_link,1); 
         uid2 = linklist(index_link,2);    
         
@@ -60,4 +56,3 @@ function [ train,test ] = DivideDataset( net, ratioTrain )
     train = net;  test = test + test';
     % 返回为训练集和测试集
 end
-
