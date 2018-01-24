@@ -11,7 +11,7 @@
  
  results = zeros(11,50,32);
  for i=1:50 %实验50次
-     j=1
+     j=1;
      tic;
      %---划分训练集和测试集
      [train,test]=DivideDataset(net,0.9);
