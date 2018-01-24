@@ -1,3 +1,4 @@
+%%%第一阶段尝试的切分数据集的方法
 function [ train,test ] = DivideNet( net,data, ratioTrain)
 %% 划分训练集和测试集，保证训练集连通
 %% 参数：添加虚假Node后的邻接矩阵，原始邻接矩阵矩阵,训练集的比例
