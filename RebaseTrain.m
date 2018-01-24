@@ -13,7 +13,6 @@ function [ train ] = RebaseTrain(train,k,hotPercent,coldPercent ,net,nonlinkperc
     %——为srcNodeNum个节点添加虚假连边
     srcNodes = zeros(srcNodeNum,1);
     %用来存储已经选取的源节点，以防重复选取
-    train3 = full(train);
     if srcNodeNum<1
         return ;
     end

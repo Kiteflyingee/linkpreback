@@ -15,14 +15,12 @@
      tic;
      %---划分训练集和测试集
      [train,test]=DivideDataset(net,0.9);
-     train1 = full(train);
-     test1 = full(test);
+     train = sparse(train); test = sparse(test);
+     train = spones(train + train'); test = spones(test+test');
      %---暂时先不计算spammer为0，最后计算
      for falselinkpercent=0.0:0.1:1.0
          %--全部随机链接
          train=RebaseTrain(train,k,0, 0 ,net,falselinkpercent);
-         train2 = full(train);
-         test2 = full(test);
 %          disp('CN...1');
          cnauc=CN(train,test);
          results(j,i,1)=cnauc;
@@ -157,7 +155,8 @@
  end
       %---把原始实验数据也写入xls
      for i = 1:32
-        outfile = strcat('out/CE/flaselink/Figori_','algorithm_',int2str(i),'.xlsx');
+%         outfile = strcat('out/CE/falselink/Figori_algorithm_',int2str(i),'.xlsx');
+        outfile = strcat('out/test/Figori_algorithm_',int2str(i),'.xlsx');
         xlswrite(outfile,results(:,:,i));
      end 
      %--求出平均数和方差，把平均数存放到一个32*11的矩阵里面(每行代表每个算法的所有平均数据) 0.0的数据不存储
@@ -168,6 +167,6 @@
          end
      end
     %      把结果输出到文件中去
-    outfile = strcat('out/CE/falselink/allrandom_Fig_avg','.xlsx');
+    outfile = strcat('out/test/allrandom_Fig_avg','.xlsx');
     xlswrite(outfile,avgMatrix(:,:));
  
