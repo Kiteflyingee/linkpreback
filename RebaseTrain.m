@@ -34,7 +34,6 @@ function [ train ] = RebaseTrain(train,k,hotPercent,coldPercent ,net,nonlinkperc
             for j =1: hotNodeNum
                 selectIdx = ceil(rand(1)*hotNodesLength);
                 selectNode = hotNodes(1,selectIdx);
-                
               
                 %——判断挑选的节点是不是源节点，再判断是否在新网络中有链接
                 if checkEdeg(copyNet,nodeIdx,selectNode)
@@ -50,15 +49,15 @@ function [ train ] = RebaseTrain(train,k,hotPercent,coldPercent ,net,nonlinkperc
                 train(selectNode,nodeIdx)=1;
             end
         end
+        
         %——挑选冷门节点
         if coldNodeNum>0
-            coldNodes = BuildColdNodes(net,k,hotPercent);
+            coldNodes = BuildColdNodes(net,k,coldPercent);
             coldNodesLength = length(coldNodes);
             for j = 1:coldNodeNum
                 selectIdx = ceil(rand(1)*coldNodesLength);
-                selectNode = coldNodes(1,selectIdx);
-                
-                
+                selectNode = coldNodes(1,selectIdx);               
+
                 %——判断挑选的节点是不是源节点，再判断是否在新网络中有链接
                 if checkEdeg(copyNet,nodeIdx,selectNode)
                     continue;
